@@ -10,4 +10,4 @@ public class LocadoraApplication {
 		SpringApplication.run(LocadoraApplication.class, args);
 	}
 
-}
+}	
