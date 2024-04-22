@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -19,9 +20,11 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 @Table(name = "cliente")
 public class Cliente {
 
-    public interface CreateCliente {}
-    public interface UpdateCliente {}
+    public interface CreateCliente {
+    }
 
+    public interface UpdateCliente {
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -31,17 +34,30 @@ public class Cliente {
     @Column(name = "Clientename", nullable = false, unique = true, length = 90)
     @NotNull(groups = CreateCliente.class)
     @NotEmpty(groups = CreateCliente.class)
-    @Size(groups = CreateCliente.class,min = 3, max = 90)
+    @Size(groups = CreateCliente.class, min = 3, max = 90)
     private String nome;
 
     @JsonProperty(access = Access.WRITE_ONLY)
     @Column(name = "Clientepasswd", nullable = false, length = 12)
-    @NotNull(groups = {CreateCliente.class, UpdateCliente.class})
-    @NotEmpty(groups = {CreateCliente.class, UpdateCliente.class})
-    @Size(groups = {CreateCliente.class, UpdateCliente.class},min = 6, max = 12)
+    @NotNull(groups = { CreateCliente.class, UpdateCliente.class })
+    @NotEmpty(groups = { CreateCliente.class, UpdateCliente.class })
+    @Size(groups = { CreateCliente.class, UpdateCliente.class }, min = 6, max = 12)
     private String senha;
 
-    //private List<Filme> filmes = new ArrayList<>();
+    @OneToMany(mappedBy = "cliente")
+    private List<Filme> filmes = new ArrayList<>();
+
+    public Cliente(Long id,
+            @NotNull(groups = CreateCliente.class) @NotEmpty(groups = CreateCliente.class) @Size(groups = CreateCliente.class, min = 3, max = 90) String nome,
+            @NotNull(groups = { CreateCliente.class, UpdateCliente.class }) @NotEmpty(groups = { CreateCliente.class,
+                    UpdateCliente.class }) @Size(groups = { CreateCliente.class,
+                            UpdateCliente.class }, min = 6, max = 12) String senha,
+            List<Filme> filmes) {
+        this.id = id;
+        this.nome = nome;
+        this.senha = senha;
+        this.filmes = filmes;
+    }
 
     public Cliente() {
     }
@@ -52,6 +68,13 @@ public class Cliente {
         this.senha = senha;
     }
 
+    public List<Filme> getFilmes() {
+        return filmes;
+    }
+
+    public void setFilmes(List<Filme> filmes) {
+        this.filmes = filmes;
+    }
 
     public Long getId() {
         return this.id;
@@ -118,7 +141,5 @@ public class Cliente {
     public String toString() {
         return "Cliente [id=" + id + ", nome=" + nome + ", senha=" + senha + "]";
     }
-
-    
 
 }
