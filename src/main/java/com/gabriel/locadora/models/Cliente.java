@@ -18,37 +18,37 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
-@Table(name = "user")
-public class User {
+@Table(name = "cliente")
+public class Cliente {
 
-    public interface CreateUser {}
-    public interface UpdateUser {}
+    public interface CreateCliente {}
+    public interface UpdateCliente {}
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user", unique = true)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id", unique = true)
     private Long id;
 
-    @Column(name = "user_name", nullable = false, unique = true, length = 90)
-    @NotNull(groups = CreateUser.class)
-    @NotEmpty(groups = CreateUser.class)
-    @Size(groups = CreateUser.class,min = 3, max = 90)
+    @Column(name = "Clientename", nullable = false, unique = true, length = 90)
+    @NotNull(groups = CreateCliente.class)
+    @NotEmpty(groups = CreateCliente.class)
+    @Size(groups = CreateCliente.class,min = 3, max = 90)
     private String nome;
 
     @JsonProperty(access = Access.WRITE_ONLY)
-    @Column(name = "user_passwd", nullable = false, length = 12)
-    @NotNull(groups = {CreateUser.class, UpdateUser.class})
-    @NotEmpty(groups = {CreateUser.class, UpdateUser.class})
-    @Size(groups = {CreateUser.class, UpdateUser.class},min = 6, max = 12)
+    @Column(name = "Clientepasswd", nullable = false, length = 12)
+    @NotNull(groups = {CreateCliente.class, UpdateCliente.class})
+    @NotEmpty(groups = {CreateCliente.class, UpdateCliente.class})
+    @Size(groups = {CreateCliente.class, UpdateCliente.class},min = 6, max = 12)
     private String senha;
 
     //private List<Filme> filmes = new ArrayList<>();
 
-    public User() {
+    public Cliente() {
     }
 
-    public User(Long id, String nome, String senha) {
+    public Cliente(Long id, String nome, String senha) {
         this.id = id;
         this.nome = nome;
         this.senha = senha;
@@ -97,7 +97,7 @@ public class User {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        User other = (User) obj;
+        Cliente other = (Cliente) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
@@ -118,7 +118,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User [id=" + id + ", nome=" + nome + ", senha=" + senha + "]";
+        return "Cliente [id=" + id + ", nome=" + nome + ", senha=" + senha + "]";
     }
 
     
