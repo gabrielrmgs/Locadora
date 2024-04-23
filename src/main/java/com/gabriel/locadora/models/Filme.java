@@ -40,7 +40,7 @@ public class Filme {
 
     private String urlYoutube;
     private String dataLancamento;
-    private int IMDb;
+    private int imdb;
     private String paisOrigem;
     private String diretor;
 
@@ -59,13 +59,13 @@ public class Filme {
     public Filme() {
     }
 
-    public Filme(Long id, String nome, String urlYoutube, String dataLancamento, int IMDb, String paisOrigem,
+    public Filme(Long id, String nome, String urlYoutube, String dataLancamento, int imdb, String paisOrigem,
             String diretor, List<String> elenco, Cliente cliente, String sinopse) {
         this.id = id;
         this.nome = nome;
         this.urlYoutube = urlYoutube;
         this.dataLancamento = dataLancamento;
-        this.IMDb = IMDb;
+        this.imdb = imdb;
         this.paisOrigem = paisOrigem;
         this.diretor = diretor;
         this.elenco = elenco;
@@ -105,12 +105,12 @@ public class Filme {
         this.dataLancamento = dataLancamento;
     }
 
-    public int getIMDb() {
-        return this.IMDb;
+    public int getimdb() {
+        return this.imdb;
     }
 
-    public void setIMDb(int IMDb) {
-        this.IMDb = IMDb;
+    public void setimdb(int imdb) {
+        this.imdb = imdb;
     }
 
     public String getPaisOrigem() {
@@ -173,8 +173,8 @@ public class Filme {
         return this;
     }
 
-    public Filme IMDb(int IMDb) {
-        setIMDb(IMDb);
+    public Filme imdb(int imdb) {
+        setimdb(imdb);
         return this;
     }
 
@@ -213,14 +213,14 @@ public class Filme {
         Filme filme = (Filme) o;
         return Objects.equals(id, filme.id) && Objects.equals(nome, filme.nome)
                 && Objects.equals(urlYoutube, filme.urlYoutube) && Objects.equals(dataLancamento, filme.dataLancamento)
-                && IMDb == filme.IMDb && Objects.equals(paisOrigem, filme.paisOrigem)
+                && imdb == filme.imdb && Objects.equals(paisOrigem, filme.paisOrigem)
                 && Objects.equals(diretor, filme.diretor) && Objects.equals(elenco, filme.elenco)
                 && Objects.equals(cliente, filme.cliente) && Objects.equals(sinopse, filme.sinopse);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nome, urlYoutube, dataLancamento, IMDb, paisOrigem, diretor, elenco, cliente, sinopse);
+        return Objects.hash(id, nome, urlYoutube, dataLancamento, imdb, paisOrigem, diretor, elenco, cliente, sinopse);
     }
 
     @Override
@@ -230,7 +230,7 @@ public class Filme {
                 ", nome='" + getNome() + "'" +
                 ", urlYoutube='" + getUrlYoutube() + "'" +
                 ", dataLancamento='" + getDataLancamento() + "'" +
-                ", IMDb='" + getIMDb() + "'" +
+                ", imdb='" + getimdb() + "'" +
                 ", paisOrigem='" + getPaisOrigem() + "'" +
                 ", diretor='" + getDiretor() + "'" +
                 ", elenco='" + getElenco() + "'" +
