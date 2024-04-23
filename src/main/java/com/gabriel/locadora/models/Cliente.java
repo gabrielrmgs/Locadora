@@ -31,14 +31,14 @@ public class Cliente {
     @Column(name = "id", unique = true)
     private Long id;
 
-    @Column(name = "Clientename", nullable = false, unique = true, length = 90)
+    @Column(name = "clientenome", nullable = false, unique = true, length = 90)
     @NotNull(groups = CreateCliente.class)
     @NotEmpty(groups = CreateCliente.class)
     @Size(groups = CreateCliente.class, min = 3, max = 90)
     private String nome;
 
     @JsonProperty(access = Access.WRITE_ONLY)
-    @Column(name = "Clientepasswd", nullable = false, length = 12)
+    @Column(name = "clientesenha", nullable = false, length = 12)
     @NotNull(groups = { CreateCliente.class, UpdateCliente.class })
     @NotEmpty(groups = { CreateCliente.class, UpdateCliente.class })
     @Size(groups = { CreateCliente.class, UpdateCliente.class }, min = 6, max = 12)
