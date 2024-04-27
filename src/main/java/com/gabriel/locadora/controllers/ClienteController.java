@@ -36,6 +36,13 @@ public class ClienteController {
         return ResponseEntity.ok().body(obj);
     }
 
+    @GetMapping("/verificado/{nome}")
+    public ResponseEntity<Cliente> findByNome(@PathVariable String nome){
+
+        Cliente obj = this.clienteService.findByNome(nome);
+        return ResponseEntity.ok().body(obj);
+    }
+
     @PostMapping
     @Validated(CreateCliente.class)
     public ResponseEntity<Void> create(@Valid @RequestBody Cliente obj) {

@@ -15,6 +15,11 @@ public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
 
+    public Cliente findByNome(String nome){
+        Optional<Cliente> cliente = this.clienteRepository.findByNome(nome);
+        return cliente.orElseThrow(() -> new RuntimeException("Não cadastrado"));
+    }
+
 
     public Cliente findById(Long id) {
         Optional<Cliente> cliente = this.clienteRepository.findById(id);
