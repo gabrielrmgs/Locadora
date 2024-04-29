@@ -13,9 +13,6 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
-
 @Entity
 @Table(name = "cliente")
 public class Cliente {
@@ -37,7 +34,7 @@ public class Cliente {
     @Size(groups = CreateCliente.class, min = 3, max = 90)
     private String nome;
 
-    @JsonProperty(access = Access.WRITE_ONLY)
+    //@JsonProperty(access = Access.WRITE_ONLY)
     @Column(name = "clientesenha", nullable = false, length = 12)
     @NotNull(groups = { CreateCliente.class, UpdateCliente.class })
     @NotEmpty(groups = { CreateCliente.class, UpdateCliente.class })

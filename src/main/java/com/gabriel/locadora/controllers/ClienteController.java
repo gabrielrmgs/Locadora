@@ -45,11 +45,11 @@ public class ClienteController {
 
     @PostMapping
     @Validated(CreateCliente.class)
-    public ResponseEntity<Void> create(@Valid @RequestBody Cliente obj) {
+    public ResponseEntity<Cliente> create(@Valid @RequestBody Cliente obj) {
 
-        this.clienteService.criarCliente(obj);
+        Cliente objeto = this.clienteService.criarCliente(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-        return ResponseEntity.created(uri).build();
+        return ResponseEntity.created(uri).body(objeto);
 
     }
 
